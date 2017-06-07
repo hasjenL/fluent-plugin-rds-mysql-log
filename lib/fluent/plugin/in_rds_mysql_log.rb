@@ -1,5 +1,4 @@
-require 'fluent:input'
-require 'myslog'
+require 'fluent/input' 
 
 class Fluent::RdsMysqlLogInput < Fluent::Input
   Fluent::Plugin.register_input("rds_mysql_log", self)
@@ -286,6 +285,7 @@ class Fluent::RdsMysqlLogInput < Fluent::Input
 
   class TimerWatcher < Coolio::TimerWatcher
     def initialize(interval, repeat, &callback)
+      require 'myslog'
       @callback = callback
       on_timer # first call
       super(interval, repeat)
